@@ -40,10 +40,10 @@ Sistem rekomendasi yang efektif memiliki dampak besar pada platform seperti Netf
 
 ## Data Understanding
 
-Dataset yang digunakan pada proyek ini berisi informasi konten Netflix, seperti judul, sutradara, pemeran, genre, durasi, dan lainnya. Dataset diambil dari sumber [Kaggle Netflix Dataset](https://www.kaggle.com/).  
+Dataset yang digunakan pada proyek ini berisi informasi konten Netflix, seperti judul, sutradara, pemeran, genre, durasi, dan lainnya. Dataset diambil dari sumber [Kaggle Netflix Dataset]( https://www.kaggle.com/datasets/shivamb/netflix-shows).  
 
 ### Informasi Dataset:
-- **Jumlah Data**: 7,000+ entri.
+- **Jumlah Data**: 8807 entri.
 - **Fitur Data**:  
   - `show_id`: ID unik untuk setiap konten.
   - `type`: Jenis konten (Movie/TV Show).
