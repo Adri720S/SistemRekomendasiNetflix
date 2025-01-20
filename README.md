@@ -15,8 +15,6 @@ Sistem rekomendasi yang efektif memiliki dampak besar pada platform seperti Netf
 
 **Referensi**:  
 - [Recommender Systems Handbook](https://link.springer.com/book/10.1007/978-1-4899-7637-6)  
-- [Netflix Prize Dataset and Challenge](https://www.netflixprize.com/)  
-
 ---
 
 ## Business Understanding
