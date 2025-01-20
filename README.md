@@ -58,9 +58,9 @@ Dataset yang digunakan pada proyek ini berisi informasi konten Netflix, seperti 
 
 ### Exploratory Data Analysis (EDA)
 Hasil EDA menunjukkan:
-- **Missing Values**: Terdapat missing values pada kolom `director` dan `cast`, yang diisi menggunakan strategi `fillna` dengan string "Unknown".
-- Distribusi rating memperlihatkan bahwa mayoritas konten memiliki rating **TV-MA** dan **PG-13**.
-- Visualisasi genre menunjukkan **Drama**, **International TV Shows**, dan **Documentaries** sebagai kategori teratas.
+- **Missing Values**: Terdapat missing values pada kolom `director`, `cast`, `country, `date_added`, `rating`, dan `duration`, yang diisi menggunakan strategi `fillna` dengan string "Unknown".
+- Distribusi rating memperlihatkan bahwa mayoritas konten memiliki rating **TV-MA** dan **TV-14**.
+- Visualisasi genre menunjukkan **International Movies**, **Dramas**, dan **Comedies** sebagai kategori teratas.
 
 ---
 
@@ -124,13 +124,13 @@ Model ini menggunakan pendekatan **Matrix Factorization** dengan SVD untuk mempr
 Metrik evaluasi yang digunakan:
 1. **Content-Based Filtering (CBF)**:
    - Precision-Recall Curve:
-     - Precision: 0.75
-     - Recall: 0.60
-   - F1-Score: 0.67
+     - Precision: 0.33
+     - Recall: 0.33
+   - F1-Score: 0.33
 
 2. **Collaborative Filtering (CF)**:
-   - **MAE**: 0.75
-   - **RMSE**: 0.95
+   - **MAE**: 0.25
+   - **RMSE**: 0.29
 
 ---
 
