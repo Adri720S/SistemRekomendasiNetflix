@@ -134,20 +134,7 @@ Metrik evaluasi yang digunakan:
    - **MAE**: 0.75
    - **RMSE**: 0.95
 
-**Formula Metrik**:
-- **Precision** = \( \frac{\text{True Positives}}{\text{True Positives} + \text{False Positives}} \)
-- **Recall** = \( \frac{\text{True Positives}}{\text{True Positives} + \text{False Negatives}} \)
-- **MAE** = \( \frac{1}{N} \sum_{i=1}^{N} |y_i - \hat{y}_i| \)
-- **RMSE** = \( \sqrt{\frac{1}{N} \sum_{i=1}^{N} (y_i - \hat{y}_i)^2} \)
-
-Hasil evaluasi menunjukkan bahwa Content-Based Filtering lebih cocok untuk dataset ini karena tidak memerlukan data interaksi pengguna, meskipun Collaborative Filtering memberikan hasil lebih personal.
-
 ---
 
 **Catatan Akhir**  
 Proyek ini menunjukkan implementasi sistem rekomendasi menggunakan dua pendekatan yang berbeda. Evaluasi membuktikan pentingnya memilih metode yang sesuai berdasarkan ketersediaan data dan tujuan bisnis. Untuk pengembangan lebih lanjut, sistem ini dapat diperluas dengan **Hybrid Recommendation System** untuk menggabungkan kelebihan CBF dan CF.
-
-**Referensi**:
-1. [Netflix Prize Dataset and Challenge](https://www.netflixprize.com/)  
-2. [Recommender Systems Handbook](https://link.springer.com/book/10.1007/978-1-4899-7637-6)  
-3. [Introduction to Collaborative Filtering](https://towardsdatascience.com/collaborative-filtering-matrix-factorization-5d5f2c375db3)
