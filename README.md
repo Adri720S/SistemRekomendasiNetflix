@@ -58,7 +58,6 @@ Dataset yang digunakan pada proyek ini berisi informasi konten Netflix, seperti 
 
 ### Exploratory Data Analysis (EDA)
 Hasil EDA menunjukkan:
-- **Missing Values**: Terdapat missing values pada kolom `director`, `cast`, `country, `date_added`, `rating`, dan `duration`, yang diisi menggunakan strategi `fillna` dengan string "Unknown".
 - Distribusi rating memperlihatkan bahwa mayoritas konten memiliki rating **TV-MA** dan **TV-14**.
 - Visualisasi genre menunjukkan **International Movies**, **Dramas**, dan **Comedies** sebagai kategori teratas.
 
@@ -67,27 +66,21 @@ Hasil EDA menunjukkan:
 ## Data Preparation
 
 Tahapan data preparation meliputi:
-1. **Data Cleaning**:
-   - Missing values pada kolom `director` dan `cast` diisi dengan nilai "Unknown".
-2. **Feature Engineering**:
-   - Menggunakan tokenisasi dan TF-IDF untuk memproses teks pada kolom `description`.
-   - Membuat matriks kesamaan antar item menggunakan **Cosine Similarity**.
-3. **Data Splitting**:
-   - Membagi dataset interaksi pengguna menjadi data latih (80%) dan data uji (20%) untuk Collaborative Filtering.
-
-**Alasan Data Preparation**:
-- TF-IDF membantu mengekstraksi fitur penting dari teks deskripsi untuk Content-Based Filtering.
-- Pembagian data memastikan model Collaborative Filtering dapat dievaluasi secara adil.
+1. **Mengubah Format date_added**:
+   - Kolom date_added diubah menjadi format datetime untuk analisis waktu.
+2. **Penggabungan Fitur**:
+   - Kolom cast, listed_in, dan description digabungkan menjadi satu kolom combined_features untuk digunakan dalam model content-based filtering.
 
 ---
 
 ## Modeling
 
-### Content-Based Filtering (CBF)
-Model ini menggunakan **TF-IDF Vectorizer** untuk menganalisis kesamaan antar konten berdasarkan deskripsi, genre, dan durasi.
-
-**Output:**
-- Rekomendasi untuk "Ganglands":
+### a. Content-Based Filtering (CBF)
+Model ini merekomendasikan konten berdasarkan kesamaan fitur antar konten:
+- TF-IDF Vectorization: Representasi teks menggunakan teknik TF-IDF untuk menghitung skor pentingnya kata dalam combined_features.
+- Cosine Similarity: Mengukur kesamaan antar konten untuk memberikan rekomendasi.
+- Hasil: Contoh rekomendasi diberikan untuk film "Ganglands", dengan film yang memiliki kesamaan konten tertinggi.
+Rekomendasi untuk "Ganglands":
   1. Jailbirds New Orleans  
   2. Earth and Blood  
   3. The Eagle of El-Se'eed  
@@ -101,11 +94,13 @@ Model ini menggunakan **TF-IDF Vectorizer** untuk menganalisis kesamaan antar ko
 
 ---
 
-### Collaborative Filtering (CF)
-Model ini menggunakan pendekatan **Matrix Factorization** dengan SVD untuk memprediksi skor rating.
-
-**Output:**
-- Rekomendasi untuk pengguna ID 1:
+### b. Collaborative Filtering (CF)
+Model ini merekomendasikan konten berdasarkan pola interaksi pengguna:
+- Matriks User-Item: Membuat matriks dari data interaksi pengguna, mengisi nilai kosong dengan rata-rata rating pengguna.
+- Cosine Similarity Antar Pengguna: Menghitung kesamaan antar pengguna untuk menemukan pengguna serupa.
+- Prediksi Rating: Menggunakan rata-rata tertimbang dari pengguna serupa untuk memprediksi rating film yang belum ditonton.
+- Hasil: Contoh rekomendasi diberikan untuk user_id = 1, dengan film yang memiliki skor prediksi tertinggi.
+Rekomendasi untuk pengguna ID 1:
   1. Kota Factory (predicted rating: 4.25)  
   2. Ganglands (predicted rating: 3.88)  
 
@@ -121,16 +116,23 @@ Model ini menggunakan pendekatan **Matrix Factorization** dengan SVD untuk mempr
 
 ## Evaluation
 
-Metrik evaluasi yang digunakan:
-1. **Content-Based Filtering (CBF)**:
-   - Precision-Recall Curve:
-     - Precision: 0.33
-     - Recall: 0.33
-   - F1-Score: 0.33
+Tahap ini mengevaluasi performa sistem rekomendasi menggunakan metrik evaluasi:
 
-2. **Collaborative Filtering (CF)**:
-   - **MAE**: 0.25
-   - **RMSE**: 0.29
+- CBF Evaluation:
+ - Precision (0.33), Recall (0.33), dan F1-Score (0.33): Mengukur akurasi rekomendasi.
+ - Precision-Recall Curve: Visualisasi trade-off antara precision dan recall.
+ - Heatmap Cosine Similarity: Menampilkan kesamaan antar konten dalam bentuk heatmap.
+- CF Evaluation:
+  - MAE (0.25) dan RMSE (0.29): Mengukur error antara rating aktual dan prediksi.
+  - nDCG dan MRR: Mengukur kualitas rekomendasi dengan mempertimbangkan relevansi.
+  - Heatmap User Similarity: Menampilkan kesamaan antar pengguna dalam bentuk heatmap.
+  - Visualisasi Rekomendasi: Menampilkan film rekomendasi dengan skor prediksi tertinggi.
+    
+## Summary and Insights
+
+- CBF: Rekomendasi berbasis konten efektif dalam menemukan film yang serupa, terutama dalam genre atau deskripsi.
+- CF: Rekomendasi berbasis kolaborasi mampu memanfaatkan pola interaksi pengguna dengan baik, tetapi membutuhkan data interaksi yang cukup banyak.
+- Evaluasi: Model CBF dan CF memiliki performa yang baik, dengan hasil yang dapat diukur menggunakan metrik seperti precision, recall, MAE, dan RMSE.
 
 ---
 
