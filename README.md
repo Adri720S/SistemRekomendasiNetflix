@@ -121,14 +121,20 @@ Rekomendasi untuk pengguna ID 1:
 Tahap ini mengevaluasi performa sistem rekomendasi menggunakan metrik evaluasi:
 
 - CBF Evaluation:
- - Precision (0.33), Recall (0.33), dan F1-Score (0.33): Mengukur akurasi rekomendasi.
- - Precision-Recall Curve: Visualisasi trade-off antara precision dan recall.
- - Heatmap Cosine Similarity: Menampilkan kesamaan antar konten dalam bentuk heatmap.
+  - Precision (0.33), Recall (0.33), dan F1-Score (0.33): Mengukur akurasi rekomendasi.
+  - Precision-Recall Curve: Visualisasi trade-off antara precision dan recall.
+     ![alt text](https://github.com/Adri720S/SistemRekomendasiNetflix/blob/main/download%20(3).png?raw=true)
+  - Heatmap Cosine Similarity: Menampilkan kesamaan antar konten dalam bentuk heatmap.
+     ![alt text](https://github.com/Adri720S/SistemRekomendasiNetflix/blob/main/download%20(4).png?raw=true)
 - CF Evaluation:
   - MAE (0.25) dan RMSE (0.29): Mengukur error antara rating aktual dan prediksi.
+    ![alt text](https://github.com/Adri720S/SistemRekomendasiNetflix/blob/main/download%20(5).png?raw=true)
   - nDCG dan MRR: Mengukur kualitas rekomendasi dengan mempertimbangkan relevansi.
+    ![alt text](https://github.com/Adri720S/SistemRekomendasiNetflix/blob/main/download%20(6).png?raw=true)
   - Heatmap User Similarity: Menampilkan kesamaan antar pengguna dalam bentuk heatmap.
+    ![alt text](https://github.com/Adri720S/SistemRekomendasiNetflix/blob/main/download%20(7).png?raw=true)
   - Visualisasi Rekomendasi: Menampilkan film rekomendasi dengan skor prediksi tertinggi.
+    ![alt text](https://github.com/Adri720S/SistemRekomendasiNetflix/blob/main/download%20(8).png?raw=true)
     
 ## Summary and Insights
 
