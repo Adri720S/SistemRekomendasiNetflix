@@ -68,24 +68,25 @@ Hasil EDA menunjukkan:
 ## Data Preparation
 
 Tahapan data preparation meliputi:
-1. **Mengubah Format date_added**:
+1. **Mengatasi missing value menggunakan metode forward fill**
+2. **Mengatasi duplikat data**
+3. **Mengubah Format date_added**:
    - Kolom date_added diubah menjadi format datetime untuk analisis waktu.
-2. **Penggabungan Fitur**:
+4. **Penggabungan Fitur**:
    - Kolom cast, listed_in, dan description digabungkan menjadi satu kolom combined_features untuk digunakan dalam model content-based filtering.
 
 ---
 
-## Modeling
+## Modeling and Result
 
 ### a. Content-Based Filtering (CBF)
 Model ini merekomendasikan konten berdasarkan kesamaan fitur antar konten:
 - TF-IDF Vectorization: Representasi teks menggunakan teknik TF-IDF untuk menghitung skor pentingnya kata dalam combined_features.
 - Cosine Similarity: Mengukur kesamaan antar konten untuk memberikan rekomendasi.
-- Hasil: Contoh rekomendasi diberikan untuk film "Ganglands", dengan film yang memiliki kesamaan konten tertinggi.
-Rekomendasi untuk "Ganglands":
-  1. Jailbirds New Orleans  
-  2. Earth and Blood  
-  3. The Eagle of El-Se'eed  
+- Hasil: Contoh rekomendasi berdasarkan acara dengan ID 's1', dengan film yang memiliki kesamaan konten tertinggi dengan top-N sebanyak 3 (3 teratas)  yaitu:
+  1. End Game  
+  2. Extremis
+  3. How to Be a Player  
 
 **Kelebihan**:
 - Tidak memerlukan data pengguna.
@@ -101,10 +102,10 @@ Model ini merekomendasikan konten berdasarkan pola interaksi pengguna:
 - Matriks User-Item: Membuat matriks dari data interaksi pengguna, mengisi nilai kosong dengan rata-rata rating pengguna.
 - Cosine Similarity Antar Pengguna: Menghitung kesamaan antar pengguna untuk menemukan pengguna serupa.
 - Prediksi Rating: Menggunakan rata-rata tertimbang dari pengguna serupa untuk memprediksi rating film yang belum ditonton.
-- Hasil: Contoh rekomendasi diberikan untuk user_id = 1, dengan film yang memiliki skor prediksi tertinggi.
-Rekomendasi untuk pengguna ID 1:
-  1. Kota Factory (predicted rating: 4.25)  
-  2. Ganglands (predicted rating: 3.88)  
+- Hasil: Contoh rekomendasi diberikan untuk `rating`=PG-13, dengan film yang memiliki skor prediksi tertinggi yaitu:
+  1. 15-Aug (Comedies, Dramas, Independent Movies)
+  2. 9-Feb (International TV Shows, TV Dramas)
+  3. 22-Jul (Dramas, Thrillers)
 
 **Kelebihan**:
 - Memanfaatkan data interaksi pengguna.
@@ -121,20 +122,16 @@ Rekomendasi untuk pengguna ID 1:
 Tahap ini mengevaluasi performa sistem rekomendasi menggunakan metrik evaluasi:
 
 - CBF Evaluation:
-  - Precision (0.33), Recall (0.33), dan F1-Score (0.33): Mengukur akurasi rekomendasi.
-  - Precision-Recall Curve: Visualisasi trade-off antara precision dan recall.
-     ![alt text](https://github.com/Adri720S/SistemRekomendasiNetflix/blob/main/download%20(3).png?raw=true)
-  - Heatmap Cosine Similarity: Menampilkan kesamaan antar konten dalam bentuk heatmap.
-     ![alt text](https://github.com/Adri720S/SistemRekomendasiNetflix/blob/main/download%20(4).png?raw=true)
+  - Precision@N = (Jumlah rekomendasi yang relevan)/𝑁
+    Precision@3 = 2/3 = 0.67
 - CF Evaluation:
-  - MAE (0.25) dan RMSE (0.29): Mengukur error antara rating aktual dan prediksi.
-    ![alt text](https://github.com/Adri720S/SistemRekomendasiNetflix/blob/main/download%20(5).png?raw=true)
-  - nDCG dan MRR: Mengukur kualitas rekomendasi dengan mempertimbangkan relevansi.
-    ![alt text](https://github.com/Adri720S/SistemRekomendasiNetflix/blob/main/download%20(6).png?raw=true)
-  - Heatmap User Similarity: Menampilkan kesamaan antar pengguna dalam bentuk heatmap.
-    ![alt text](https://github.com/Adri720S/SistemRekomendasiNetflix/blob/main/download%20(7).png?raw=true)
-  - Visualisasi Rekomendasi: Menampilkan film rekomendasi dengan skor prediksi tertinggi.
-    ![alt text](https://github.com/Adri720S/SistemRekomendasiNetflix/blob/main/download%20(8).png?raw=true)
+  - Menggunakan Hit Ratio @N.
+    - Karena CF berbasis rentang usia, sulit mengukur relevansi individual.
+    - Hit Ratio @N digunakan untuk mengevaluasi apakah minimal 1 dari N rekomendasi cocok dengan film yang pernah ditonton pengguna dalam kelompok usia yang sama.
+    - Formula:
+      Hit Ratio@N = (Jumlah pengguna dengan rekomendasi yang cocok)/ (Total pengguna)
+      Hit Ratio@3: 1.00
+      Maka terdapat minimal 1 film dari rekomendasi ditemukan dalam daftar film yang pernah ditonton pengguna kelompok usia tersebut.
     
 ## Summary and Insights
 
