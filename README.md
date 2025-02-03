@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-Latar belakang:  
+**Latar belakang:**  
 Netflix adalah salah satu platform streaming terbesar yang menyediakan berbagai pilihan film, serial, dan dokumenter. Dengan jumlah konten yang besar, pengguna sering kesulitan menemukan tayangan yang sesuai dengan preferensi mereka. Sistem rekomendasi menjadi solusi penting untuk meningkatkan pengalaman pengguna dengan memberikan rekomendasi yang relevan dan personal.  
 
 Proyek ini bertujuan untuk membangun sistem rekomendasi berbasis **Content-Based Filtering (CBF)** dan **Collaborative Filtering (CF)** untuk dataset Netflix.  
@@ -95,8 +95,6 @@ Model ini merekomendasikan konten berdasarkan kesamaan fitur antar konten:
 **Kekurangan**:
 - Tidak dapat menangani cold-start pengguna baru.
 
----
-
 ### b. Collaborative Filtering (CF)
 Model ini merekomendasikan konten berdasarkan pola interaksi pengguna:
 - Matriks User-Item: Membuat matriks dari data interaksi pengguna, mengisi nilai kosong dengan rata-rata rating pengguna.
@@ -131,6 +129,7 @@ Tahap ini mengevaluasi performa sistem rekomendasi menggunakan metrik evaluasi:
     - Formula:
       Hit Ratio@N = (Jumlah pengguna dengan rekomendasi yang cocok)/ (Total pengguna)
       Hit Ratio@3: 1.00
+
       Maka terdapat minimal 1 film dari rekomendasi ditemukan dalam daftar film yang pernah ditonton pengguna kelompok usia tersebut.
     
 ## Summary and Insights
