@@ -70,7 +70,9 @@ Hasil EDA menunjukkan:
 Tahapan data preparation meliputi:
 
 **a. Mengatasi missing value menggunakan metode forward fill**
+
 **b. Mengatasi duplikat data**
+
 **c. Mengubah Format date_added**:
    - Kolom date_added diubah menjadi format datetime untuk analisis waktu.
      
