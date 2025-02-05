@@ -70,13 +70,13 @@ Hasil EDA menunjukkan:
 Tahapan data preparation meliputi:
 
 **a. Mengatasi missing value menggunakan metode forward fill**
-
 **b. Mengatasi duplikat data**
-
 **c. Mengubah Format date_added**:
    - Kolom date_added diubah menjadi format datetime untuk analisis waktu.
+     
 **d. Penggabungan Fitur**:
    - Kolom cast, listed_in, dan description digabungkan menjadi satu kolom combined_features untuk digunakan dalam model content-based filtering.
+     
 **e. TF-IDF Vectorization**:
 
 TF-IDF digunakan untuk merepresentasikan fitur dari item (cast, listed_in, dan description) dalam bentuk vektor numerik berdasarkan deskripsi teksnya. Ini membantu dalam mengukur kesamaan antar item untuk memberikan rekomendasi yang lebih relevan.
