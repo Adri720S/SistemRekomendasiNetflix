@@ -21,22 +21,22 @@ Sistem rekomendasi yang efektif memiliki dampak besar pada platform seperti Netf
 
 ### Problem Statements
 - Bagaimana sistem rekomendasi dapat membantu pengguna menemukan konten yang relevan di Netflix?
-- Apa perbedaan performa antara pendekatan Content-Based Filtering dan Collaborative Filtering pada dataset ini?
+- Apa perbedaan antara model Content-Based Filtering dengan Collaborative Filtering pada dataset ini?
 
 ### Goals
 - Membangun model sistem rekomendasi berbasis CBF dan CF.
-- Membandingkan keefektifan kedua model dengan metrik evaluasi seperti Precision, Recall, MAE, dan RMSE.
+- Menganalisis perbedaan cara kerja model CBF dan CF.
 
 ### Solution Approach
 #### Solution Statements:
 1. **Content-Based Filtering (CBF)**:  
-   Membuat rekomendasi berdasarkan fitur kesamaan antar item seperti genre, durasi, dan deskripsi konten.
+   Membuat rekomendasi berdasarkan fitur kesamaan antar item seperti pemeran, genre dan deskripsi konten.
 2. **Collaborative Filtering (CF)**:  
-   Menggunakan data interaksi pengguna untuk memberikan rekomendasi berdasarkan pola perilaku pengguna lain yang serupa.
+   Menggunakan data interaksi pengguna (rating usia) untuk memberikan rekomendasi berdasarkan pola perilaku pengguna lain yang serupa.
 
 ---
 
-## Data Understanding
+## 1. Data Understanding
 
 Dataset yang digunakan pada proyek ini berisi informasi konten Netflix, seperti judul, sutradara, pemeran, genre, durasi, dan lainnya. Dataset diambil dari sumber [Kaggle Netflix Dataset]( https://www.kaggle.com/datasets/shivamb/netflix-shows).  
 
@@ -56,7 +56,7 @@ Dataset yang digunakan pada proyek ini berisi informasi konten Netflix, seperti 
   - `listed_in`: Genre konten.
   - `description`: Deskripsi singkat konten.
 
-### Exploratory Data Analysis (EDA)
+### 2. Exploratory Data Analysis (EDA)
 Hasil EDA menunjukkan:
 ![alt text](https://github.com/Adri720S/SistemRekomendasiNetflix/blob/main/download.png?raw=true)
 - Distribusi rating memperlihatkan bahwa mayoritas konten memiliki rating **TV-MA** dan **TV-14**.
@@ -65,80 +65,74 @@ Hasil EDA menunjukkan:
 
 ---
 
-## Data Preparation
+## 3. Data Preparation
 
 Tahapan data preparation meliputi:
-1. **Mengatasi missing value menggunakan metode forward fill**
-2. **Mengatasi duplikat data**
-3. **Mengubah Format date_added**:
+**a. Mengatasi missing value menggunakan metode forward fill**
+**b. Mengatasi duplikat data**
+**c. Mengubah Format date_added**:
    - Kolom date_added diubah menjadi format datetime untuk analisis waktu.
-4. **Penggabungan Fitur**:
+**d. Penggabungan Fitur**:
    - Kolom cast, listed_in, dan description digabungkan menjadi satu kolom combined_features untuk digunakan dalam model content-based filtering.
+**e. TF-IDF Vectorization**:
+
+TF-IDF digunakan untuk merepresentasikan fitur dari item (cast, listed_in, dan description) dalam bentuk vektor numerik berdasarkan deskripsi teksnya. Ini membantu dalam mengukur kesamaan antar item untuk memberikan rekomendasi yang lebih relevan.
 
 ---
 
-## Modeling and Result
+## 4. Modeling and Result
+
+Pada bagian ini, penjelasan difokuskan pada pembangunan sistem rekomendasi menggunakan Content-Based Filtering (CBF) dan Collaborative Filtering (CF) dengan pendekatan cosine similarity untuk menghitung kesamaan antar konten dan antar pengguna.
 
 ### a. Content-Based Filtering (CBF)
-Model ini merekomendasikan konten berdasarkan kesamaan fitur antar konten:
-- TF-IDF Vectorization: Representasi teks menggunakan teknik TF-IDF untuk menghitung skor pentingnya kata dalam combined_features.
-- Cosine Similarity: Mengukur kesamaan antar konten untuk memberikan rekomendasi.
-- Hasil: Contoh rekomendasi berdasarkan acara dengan ID 's1', dengan film yang memiliki kesamaan konten tertinggi dengan top-N sebanyak 3 (3 teratas)  yaitu:
-  1. End Game  
-  2. Extremis
-  3. How to Be a Player  
+Model CBF menghasilkan rekomendasi dengan mengukur kesamaan antara konten berdasarkan fitur-fitur yang ada, seperti genre, deskripsi, dan pemeran. Dengan menggunakan cosine similarity, kesamaan antar item konten dapat dihitung, memungkinkan model untuk memberikan rekomendasi berdasarkan kedekatan antara konten yang ada.
 
-**Kelebihan**:
-- Tidak memerlukan data pengguna.
-- Cepat untuk konten baru.  
+Hasil dari model ini menghasilkan rekomendasi konten yang memiliki kesamaan tinggi dengan konten yang telah dipilih oleh pengguna. Sebagai contoh, jika pengguna menonton film "End Game", model ini akan merekomendasikan film lain yang memiliki kesamaan dengan konten tersebut, seperti:
 
-**Kekurangan**:
-- Tidak dapat menangani cold-start pengguna baru.
+1. End Game
+2. Extremis
+3. How to Be a Player
 
 ### b. Collaborative Filtering (CF)
-Model ini merekomendasikan konten berdasarkan pola interaksi pengguna:
-- Matriks User-Item: Membuat matriks dari data interaksi pengguna, mengisi nilai kosong dengan rata-rata rating pengguna.
-- Cosine Similarity Antar Pengguna: Menghitung kesamaan antar pengguna untuk menemukan pengguna serupa.
-- Prediksi Rating: Menggunakan rata-rata tertimbang dari pengguna serupa untuk memprediksi rating film yang belum ditonton.
-- Hasil: Contoh rekomendasi diberikan untuk `rating`=PG-13, dengan film yang memiliki skor prediksi tertinggi yaitu:
-  1. 15-Aug (Comedies, Dramas, Independent Movies)
-  2. 9-Feb (International TV Shows, TV Dramas)
-  3. 22-Jul (Dramas, Thrillers)
+Pada model CF, rekomendasi diberikan berdasarkan interaksi pengguna dengan konten. Dengan menggunakan cosine similarity antar pengguna, kesamaan preferensi antar pengguna dapat dihitung untuk menemukan pola perilaku pengguna yang serupa. Hal ini memungkinkan model untuk memberikan rekomendasi berdasarkan pola perilaku pengguna lain yang memiliki preferensi serupa. Sebagai contoh, untuk pengguna dengan rating usia "PG-13", rekomendasi yang diberikan meliputi:
 
-**Kelebihan**:
-- Memanfaatkan data interaksi pengguna.
-- Memberikan rekomendasi personal.  
+1. 15-Aug (Comedies, Dramas, Independent Movies)
+2. 9-Feb (International TV Shows, TV Dramas)
+3. 22-Jul (Dramas, Thrillers)
 
-**Kekurangan**:
-- Membutuhkan data interaksi yang besar.
-- Kesulitan menghadapi cold-start item baru.
+Dengan menggunakan pendekatan ini, rekomendasi didasarkan pada pola interaksi pengguna lain dalam kelompok usia yang sama, sehingga dapat meningkatkan relevansi dan pengalaman pengguna dengan konten yang lebih sesuai.
 
 ---
 
-## Evaluation
+## 5. Evaluation
 
-Tahap ini mengevaluasi performa sistem rekomendasi menggunakan metrik evaluasi:
+Pada bagian ini, evaluasi difokuskan untuk menilai dampak model terhadap Business Understanding yang telah ditetapkan sebelumnya.
 
-- CBF Evaluation:
-  - Precision@N = (Jumlah rekomendasi yang relevan)/𝑁
-    Precision@3 = 2/3 = 0.67
-- CF Evaluation:
-  - Menggunakan Hit Ratio @N.
-    - Karena CF berbasis rentang usia, sulit mengukur relevansi individual.
-    - Hit Ratio @N digunakan untuk mengevaluasi apakah minimal 1 dari N rekomendasi cocok dengan film yang pernah ditonton pengguna dalam kelompok usia yang sama.
-    - Formula:
-      Hit Ratio@N = (Jumlah pengguna dengan rekomendasi yang cocok)/ (Total pengguna)
-      Hit Ratio@3: 1.00
+**Problem Statement**
+1. Bagaimana sistem rekomendasi dapat membantu pengguna menemukan konten yang relevan di Netflix?
+- **CBF** memberikan solusi yang efektif dalam menemukan konten yang relevan berdasarkan kesamaan fitur konten, yaitu pemeran, genre atau deskripsi. Model ini sangat berguna untuk menemukan konten yang sesuai dengan preferensi pengguna tanpa memerlukan data pengguna.
+- **CF** memungkinkan sistem memberikan rekomendasi yang lebih personal berdasarkan pola perilaku pengguna lain dengan preferensi yang serupa. Hal ini membantu dalam menemukan konten yang relevan berdasarkan interaksi pengguna sebelumnya.
 
-      Maka terdapat minimal 1 film dari rekomendasi ditemukan dalam daftar film yang pernah ditonton pengguna kelompok usia tersebut.
+2. Apa perbedaan antara model Content-Based Filtering dengan Collaborative Filtering pada dataset ini?
+- **CBF** mengandalkan kesamaan antar konten, sedangkan **CF** berfokus pada kesamaan antara pengguna berdasarkan interaksi mereka dengan konten. Model **CBF** dapat bekerja dengan baik meskipun tanpa data pengguna, sementara **CF** memerlukan data interaksi yang lebih banyak agar dapat memberikan rekomendasi yang lebih akurat.
+
+**Goal Evaluation**
+1. Membangun model sistem rekomendasi berbasis CBF dan CF.
+- Tujuan ini berhasil tercapai dengan pengembangan model CBF dan CF yang masing-masing menggunakan cosine similarity untuk menghitung kesamaan antara konten dan antar pengguna.
+2. Menganalisis perbedaan cara kerja model CBF dan CF.
+- Analisis mengenai perbedaan kedua model telah dilakukan dengan mengidentifikasi bahwa CBF berfokus pada kesamaan konten, sedangkan CF mengandalkan data interaksi pengguna untuk memberikan rekomendasi yang lebih personal.
+
+**Solution Statements Impact**
+1. Content-Based Filtering (CBF):
+- Model CBF terbukti efektif dalam memberikan rekomendasi konten berdasarkan kesamaan antar konten. Model ini memberikan solusi yang tepat untuk meningkatkan relevansi rekomendasi tanpa memerlukan data interaksi pengguna, yang menjawab masalah bagi konten yang baru atau kurang diketahui.
+2. Collaborative Filtering (CF):
+- Model CF memberikan rekomendasi yang sangat personal dengan memanfaatkan data interaksi pengguna untuk menemukan pola yang relevan. Model ini memiliki dampak yang signifikan dalam memberikan rekomendasi yang lebih tepat bagi pengguna, namun bergantung pada jumlah dan kualitas data interaksi pengguna.
     
-## Summary and Insights
+## 6. Summary and Insights
 
-- CBF: Rekomendasi berbasis konten efektif dalam menemukan film yang serupa, terutama dalam genre atau deskripsi.
-- CF: Rekomendasi berbasis kolaborasi mampu memanfaatkan pola interaksi pengguna dengan baik, tetapi membutuhkan data interaksi yang cukup banyak.
-- Evaluasi: Model CBF dan CF memiliki performa yang baik, dengan hasil yang dapat diukur menggunakan metrik seperti precision, recall, MAE, dan RMSE.
+Tahap ini merangkum hasil dan insight dari proyek:
 
----
-
-**Catatan Akhir**  
-Proyek ini menunjukkan implementasi sistem rekomendasi menggunakan dua pendekatan yang berbeda. Evaluasi membuktikan pentingnya memilih metode yang sesuai berdasarkan ketersediaan data dan tujuan bisnis. Untuk pengembangan lebih lanjut, sistem ini dapat diperluas dengan **Hybrid Recommendation System** untuk menggabungkan kelebihan CBF dan CF.
+- CBF: Rekomendasi berbasis konten efektif dalam menemukan film yang serupa, terutama dalam genre atau deskripsi. Dalam evaluasi di atas precisionnya 2/3 karena hanya 2 yang benar dari rekomendasi di atas.
+- CF: Rekomendasi berbasis kolaborasi mampu memanfaatkan pola interaksi pengguna dengan baik, tetapi membutuhkan data interaksi yang cukup banyak. Berdasarkan evaluasi di atas hanya 1 yang benar dari 3 rekomendasi di atas.
+  
+Jadi model CBF dan CF memiliki performa yang baik, dengan hasil yang dapat diukur menggunakan metrik seperti precision tetapi itu tergantung dari fakta sebenarnya.
