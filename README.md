@@ -98,9 +98,9 @@ Hasil dari model ini menghasilkan rekomendasi konten yang memiliki kesamaan ting
 ### b. Collaborative Filtering (CF)
 Pada model CF, rekomendasi diberikan berdasarkan interaksi pengguna dengan konten. Dengan menggunakan cosine similarity antar pengguna, kesamaan preferensi antar pengguna dapat dihitung untuk menemukan pola perilaku pengguna yang serupa. Hal ini memungkinkan model untuk memberikan rekomendasi berdasarkan pola perilaku pengguna lain yang memiliki preferensi serupa. Sebagai contoh, untuk pengguna dengan rating usia "PG-13", rekomendasi yang diberikan meliputi:
 
-1. 15-Aug (Comedies, Dramas, Independent Movies)
+1. 22-Jul (Dramas, Thrillers)
 2. 9-Feb (International TV Shows, TV Dramas)
-3. 22-Jul (Dramas, Thrillers)
+3. 15-Aug (Comedies, Dramas, Independent Movies)
 
 Dengan menggunakan pendekatan ini, rekomendasi didasarkan pada pola interaksi pengguna lain dalam kelompok usia yang sama, sehingga dapat meningkatkan relevansi dan pengalaman pengguna dengan konten yang lebih sesuai.
 
