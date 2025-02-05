@@ -108,8 +108,6 @@ Dengan menggunakan pendekatan ini, rekomendasi didasarkan pada pola interaksi pe
 
 ## 5. Evaluation
 
-Pada bagian ini, evaluasi difokuskan untuk menilai dampak model terhadap Business Understanding yang telah ditetapkan sebelumnya.
-
 **Problem Statement**
 1. Bagaimana sistem rekomendasi dapat membantu pengguna menemukan konten yang relevan di Netflix?
 - **CBF** memberikan solusi yang efektif dalam menemukan konten yang relevan berdasarkan kesamaan fitur konten, yaitu pemeran, genre atau deskripsi. Model ini sangat berguna untuk menemukan konten yang sesuai dengan preferensi pengguna tanpa memerlukan data pengguna.
