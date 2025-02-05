@@ -86,8 +86,6 @@ Tahapan data preparation meliputi:
 
 ## 4. Modeling and Result
 
-Pada bagian ini, penjelasan difokuskan pada pembangunan sistem rekomendasi menggunakan Content-Based Filtering (CBF) dan Collaborative Filtering (CF) dengan pendekatan cosine similarity untuk menghitung kesamaan antar konten dan antar pengguna.
-
 ### a. Content-Based Filtering (CBF)
 Model CBF menghasilkan rekomendasi dengan mengukur kesamaan antara konten berdasarkan fitur-fitur yang ada, seperti genre, deskripsi, dan pemeran. Dengan menggunakan cosine similarity, kesamaan antar item konten dapat dihitung, memungkinkan model untuk memberikan rekomendasi berdasarkan kedekatan antara konten yang ada.
 
