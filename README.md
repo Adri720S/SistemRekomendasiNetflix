@@ -69,18 +69,26 @@ Hasil EDA menunjukkan:
 
 Tahapan data preparation meliputi:
 
-**a. Mengatasi missing value menggunakan metode forward fill**
+**a. Penanganan missing value menggunakan metode forward fill**
 
-**b. Mengatasi duplikat data**
+**b. Penanganan duplikat data**
 
 **c. Mengubah Format date_added**:
    - Kolom date_added diubah menjadi format datetime untuk analisis waktu.
-     
+
+Preparation for CBF
+
 **d. Penggabungan Fitur**:
    - Kolom cast, listed_in, dan description digabungkan menjadi satu kolom combined_features untuk digunakan dalam model content-based filtering.
      
 **e. TF-IDF Vectorization**:
 - TF-IDF digunakan untuk merepresentasikan fitur dari item (cast, listed_in, dan description) dalam bentuk vektor numerik berdasarkan deskripsi teksnya. Ini membantu dalam mengukur kesamaan antar item untuk memberikan rekomendasi yang lebih relevan.
+
+Preparation for CF
+
+**f. Pivot data interaksi pengguna**
+
+**g. User-item matrix berdasarkan rating**
 
 ---
 
@@ -96,7 +104,7 @@ Hasil dari model ini menghasilkan rekomendasi konten yang memiliki kesamaan ting
 3. How to Be a Player
 
 ### b. Collaborative Filtering (CF)
-Pada model CF, rekomendasi diberikan berdasarkan interaksi pengguna dengan konten. Dengan menggunakan cosine similarity antar pengguna, kesamaan preferensi antar pengguna dapat dihitung untuk menemukan pola perilaku pengguna yang serupa. Hal ini memungkinkan model untuk memberikan rekomendasi berdasarkan pola perilaku pengguna lain yang memiliki preferensi serupa. Sebagai contoh, untuk pengguna dengan rating usia "PG-13", rekomendasi yang diberikan meliputi:
+Pada model CF, rekomendasi diberikan berdasarkan interaksi pengguna dengan konten. Hal ini memungkinkan model untuk memberikan rekomendasi berdasarkan pola perilaku pengguna untuk preferensi. Sebagai contoh, untuk pengguna dengan rating usia "PG-13", rekomendasi yang diberikan meliputi:
 
 1. 22-Jul (Dramas, Thrillers)
 2. 9-Feb (International TV Shows, TV Dramas)
@@ -127,12 +135,3 @@ Dengan menggunakan pendekatan ini, rekomendasi didasarkan pada pola interaksi pe
 - Model CBF terbukti efektif dalam memberikan rekomendasi konten berdasarkan kesamaan antar konten. Model ini memberikan solusi yang tepat untuk meningkatkan relevansi rekomendasi tanpa memerlukan data interaksi pengguna, yang menjawab masalah bagi konten yang baru atau kurang diketahui.
 2. Collaborative Filtering (CF):
 - Model CF memberikan rekomendasi yang personal dengan memanfaatkan data interaksi pengguna untuk menemukan pola yang relevan. 
-    
-## 6. Summary and Insights
-
-Tahap ini merangkum hasil dan insight dari proyek:
-
-- CBF: Rekomendasi berbasis konten efektif dalam menemukan film yang serupa, terutama dalam genre atau deskripsi. Dalam evaluasi di atas precisionnya 2/3 karena hanya 2 yang benar dari rekomendasi di atas.
-- CF: Rekomendasi berbasis kolaborasi mampu memanfaatkan pola interaksi pengguna dengan baik, tetapi membutuhkan data interaksi yang cukup banyak. Berdasarkan evaluasi di atas hanya 1 yang benar dari 3 rekomendasi di atas.
-  
-Jadi model CBF dan CF memiliki performa yang baik, dengan hasil yang dapat diukur menggunakan metrik seperti precision tetapi itu tergantung dari fakta sebenarnya.
