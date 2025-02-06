@@ -143,7 +143,10 @@ Precision@N = \frac{Jumlah rekomendasi yang relevan}{N}
 $$
 
 - ​Output:
+
+$$  
 Precision@3 = 0.67
+$$
 
 Artinya, dari 3 rekomendasi yang diberikan, 67% di antaranya memiliki genre yang sesuai dengan film referensi.
 
@@ -158,7 +161,11 @@ Diversity@N = \frac{Jumlah kategori unik}{N}
 $$
 ​
 - Output:
+
+$$
 Diversity@3 = 2.00
+$$
+
 Artinya, dari 3 rekomendasi yang diberikan, rata-rata tingkat perbedaan antar item yang direkomendasikan adalah 2.00. Hal ini menunjukkan bahwa rekomendasi cukup beragam, tetapi masih ada kemiripan antar beberapa item.
 
 ## Final Evaluation & Business Impact
