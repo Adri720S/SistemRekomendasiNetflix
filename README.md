@@ -136,7 +136,7 @@ Evaluasi dilakukan dengan menggunakan dua metrik utama:
 
 Precision digunakan untuk mengukur seberapa relevan rekomendasi yang diberikan oleh model CBF dibandingkan dengan konten yang sebenarnya relevan.
 
-Metode perhitungan Precision@N:
+- Metode perhitungan Precision@N:
 
 $$ 
 Precision@N = \frac{Jumlah rekomendasi yang relevan}{N} 
@@ -154,10 +154,10 @@ Artinya, dari 3 rekomendasi yang diberikan, 67% di antaranya memiliki genre yang
 
 Diversity digunakan untuk mengukur seberapa beragam rekomendasi yang diberikan oleh model CF. Metrik ini mengidentifikasi jumlah kategori (genre, tema, atau atribut lain) yang berbeda dalam rekomendasi.
 
-Metode perhitungan Diversity@N:
+- Metode perhitungan Diversity@N:
 
-$$ 
-Diversity@N = \frac{Jumlah kategori unik}{N} 
+$$
+Diversity@N = \frac{Jumlah kategori unik}{N}
 $$
 ​
 - Output:
