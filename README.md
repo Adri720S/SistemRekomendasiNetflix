@@ -156,7 +156,7 @@ Diversity digunakan untuk mengukur seberapa beragam rekomendasi yang diberikan o
 
 - Metode perhitungan Diversity@N:
 
-$$
+$$ 
 Diversity@N = \frac{Jumlah kategori unik}{N}
 $$
 ​
