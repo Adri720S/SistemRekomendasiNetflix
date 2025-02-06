@@ -134,4 +134,43 @@ Dengan menggunakan pendekatan ini, rekomendasi didasarkan pada pola interaksi pe
 1. Content-Based Filtering (CBF):
 - Model CBF terbukti efektif dalam memberikan rekomendasi konten berdasarkan kesamaan antar konten. Model ini memberikan solusi yang tepat untuk meningkatkan relevansi rekomendasi tanpa memerlukan data interaksi pengguna, yang menjawab masalah bagi konten yang baru atau kurang diketahui.
 2. Collaborative Filtering (CF):
-- Model CF memberikan rekomendasi yang personal dengan memanfaatkan data interaksi pengguna untuk menemukan pola yang relevan. 
+- Model CF memberikan rekomendasi yang personal dengan memanfaatkan data interaksi pengguna untuk menemukan pola yang relevan.
+
+## Evaluation Metrics and Results
+Evaluasi dilakukan dengan menggunakan dua metrik utama:
+
+1. Precision@N untuk Content-Based Filtering
+2. Diversity@N untuk Collaborative Filtering
+**a. CBF Evaluation - Precision@N**
+
+Precision digunakan untuk mengukur seberapa relevan rekomendasi yang diberikan oleh model CBF dibandingkan dengan konten yang sebenarnya relevan.
+
+Metode perhitungan Precision@N:
+
+Precision@N =(Jumlah rekomendasi yang relevan)/(N)
+
+- ​Output:
+Precision@3 = 0.67
+
+Artinya, dari 3 rekomendasi yang diberikan, 67% di antaranya memiliki genre yang sesuai dengan film referensi.
+
+**b. CF Evaluation - Diversity@N**
+Diversity digunakan untuk mengukur seberapa beragam rekomendasi yang diberikan oleh model CF. Metrik ini mengidentifikasi jumlah kategori (genre, tema, atau atribut lain) yang berbeda dalam rekomendasi.
+
+Metode perhitungan Diversity@N:
+
+Diversity@N = (Jumlah kategori unik)/(𝑁)
+​
+- Output:
+Diversity@3 = 2.00
+Artinya, dari 3 rekomendasi yang diberikan, rata-rata tingkat perbedaan antar item yang direkomendasikan adalah 2.00. Hal ini menunjukkan bahwa rekomendasi cukup beragam, tetapi masih ada kemiripan antar beberapa item.
+
+## Final Evaluation & Business Impact
+
+Berdasarkan hasil evaluasi menggunakan metrik Precision@N dan Diversity@N, sistem rekomendasi yang dibangun mampu memberikan hasil yang efektif:
+
+1. Content-Based Filtering (CBF) terbukti dapat memberikan rekomendasi yang relevan dengan tingkat precision 0.67. Ini menunjukkan bahwa model berhasil merekomendasikan film berdasarkan kesamaan fitur konten, yang cocok untuk pengguna baru atau film yang kurang populer.
+2. Collaborative Filtering (CF) memberikan rekomendasi yang cukup beragam dengan Diversity@3 sebesar 2.00. Hal ini menunjukkan bahwa rekomendasi dari model CF tidak hanya relevan tetapi juga memiliki variasi dalam genre yang ditampilkan.
+
+Dari sisi Business Understanding, sistem rekomendasi ini dapat meningkatkan pengalaman pengguna dengan memberikan rekomendasi yang lebih relevan (CBF) serta beragam dan lebih personal (CF). Ini bisa meningkatkan watch time pengguna di Netflix serta meningkatkan kepuasan pengguna terhadap layanan streaming.
+
