@@ -139,7 +139,7 @@ Precision digunakan untuk mengukur seberapa relevan rekomendasi yang diberikan o
 - Metode perhitungan Precision@N:
 
 $$ 
-Precision@N = \frac{Jumlah rekomendasi yang relevan}{N} 
+Precision@N = \frac{\text{Jumlah rekomendasi yang relevan}}{\text{N}} 
 $$
 
 - ​Output:
@@ -157,7 +157,7 @@ Diversity digunakan untuk mengukur seberapa beragam rekomendasi yang diberikan o
 - Metode perhitungan Diversity@N:
 
 $$ 
-Diversity@N =\frac{Jumlah kategori unik}{N} 
+Diversity@N =\frac{\text{Jumlah kategori unik}}{\text{N}} 
 $$
 ​
 - Output:
