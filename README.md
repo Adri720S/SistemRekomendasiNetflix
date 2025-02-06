@@ -15,7 +15,7 @@ Sistem rekomendasi yang efektif memiliki dampak besar pada platform seperti Netf
 
 **Referensi**:  
 - [Recommender Systems Handbook](https://link.springer.com/book/10.1007/978-1-4899-7637-6)  
----
+
 
 ## Business Understanding
 
@@ -34,7 +34,6 @@ Sistem rekomendasi yang efektif memiliki dampak besar pada platform seperti Netf
 2. **Collaborative Filtering (CF)**:  
    Menggunakan data interaksi pengguna (rating usia) untuk memberikan rekomendasi berdasarkan pola perilaku pengguna lain yang serupa.
 
----
 
 ## 1. Data Understanding
 
@@ -63,34 +62,26 @@ Hasil EDA menunjukkan:
 ![alt text](https://github.com/Adri720S/SistemRekomendasiNetflix/blob/main/download%20(2).png?raw=true)
 - Visualisasi genre menunjukkan **International Movies**, **Dramas**, dan **Comedies** sebagai kategori teratas.
 
----
 
 ## 3. Data Preparation
 
 Tahapan data preparation meliputi:
 
-**a. Penanganan missing value menggunakan metode forward fill**
+- Penanganan missing value menggunakan metode forward fill
+- Penanganan duplikat data
+- Mengubah Format date_added
+  - Kolom date_added diubah menjadi format datetime untuk analisis waktu.
 
-**b. Penanganan duplikat data**
+**Preparation for CBF**
+- Penggabungan Fitur:
+  - Kolom cast, listed_in, dan description digabungkan menjadi satu kolom combined_features untuk digunakan dalam model content-based filtering.
+- TF-IDF Vectorization:
+  - TF-IDF digunakan untuk merepresentasikan fitur dari item (cast, listed_in, dan description) dalam bentuk vektor numerik berdasarkan deskripsi teksnya. Ini membantu dalam mengukur kesamaan antar item untuk memberikan rekomendasi yang lebih relevan.
 
-**c. Mengubah Format date_added**:
-   - Kolom date_added diubah menjadi format datetime untuk analisis waktu.
+**Preparation for CF**
+- Pivot data interaksi pengguna
+- User-item matrix berdasarkan rating
 
-Preparation for CBF
-
-**d. Penggabungan Fitur**:
-   - Kolom cast, listed_in, dan description digabungkan menjadi satu kolom combined_features untuk digunakan dalam model content-based filtering.
-     
-**e. TF-IDF Vectorization**:
-- TF-IDF digunakan untuk merepresentasikan fitur dari item (cast, listed_in, dan description) dalam bentuk vektor numerik berdasarkan deskripsi teksnya. Ini membantu dalam mengukur kesamaan antar item untuk memberikan rekomendasi yang lebih relevan.
-
-Preparation for CF
-
-**f. Pivot data interaksi pengguna**
-
-**g. User-item matrix berdasarkan rating**
-
----
 
 ## 4. Modeling and Result
 
@@ -111,8 +102,6 @@ Pada model CF, rekomendasi diberikan berdasarkan interaksi pengguna dengan konte
 3. 15-Aug (Comedies, Dramas, Independent Movies)
 
 Dengan menggunakan pendekatan ini, rekomendasi didasarkan pada pola interaksi pengguna lain dalam kelompok usia yang sama, sehingga dapat meningkatkan relevansi dan pengalaman pengguna dengan konten yang lebih sesuai.
-
----
 
 ## 5. Evaluation
 
