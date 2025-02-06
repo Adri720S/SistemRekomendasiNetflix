@@ -126,7 +126,7 @@ Dengan menggunakan pendekatan ini, rekomendasi didasarkan pada pola interaksi pe
 1. Content-Based Filtering (CBF):
 - Model CBF terbukti efektif dalam memberikan rekomendasi konten berdasarkan kesamaan antar konten. Model ini memberikan solusi yang tepat untuk meningkatkan relevansi rekomendasi tanpa memerlukan data interaksi pengguna, yang menjawab masalah bagi konten yang baru atau kurang diketahui.
 2. Collaborative Filtering (CF):
-- Model CF memberikan rekomendasi yang sangat personal dengan memanfaatkan data interaksi pengguna untuk menemukan pola yang relevan. Model ini memiliki dampak yang signifikan dalam memberikan rekomendasi yang lebih tepat bagi pengguna, namun bergantung pada jumlah dan kualitas data interaksi pengguna.
+- Model CF memberikan rekomendasi yang personal dengan memanfaatkan data interaksi pengguna untuk menemukan pola yang relevan. 
     
 ## 6. Summary and Insights
 
