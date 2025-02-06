@@ -56,9 +56,10 @@ Dataset yang digunakan pada proyek ini berisi informasi konten Netflix, seperti 
   - `description`: Deskripsi singkat konten.
 
 ### 2. Exploratory Data Analysis (EDA)
-Hasil EDA menunjukkan:
+
 ![alt text](https://github.com/Adri720S/SistemRekomendasiNetflix/blob/main/download.png?raw=true)
 - Distribusi rating memperlihatkan bahwa mayoritas konten memiliki rating **TV-MA** dan **TV-14**.
+  
 ![alt text](https://github.com/Adri720S/SistemRekomendasiNetflix/blob/main/download%20(2).png?raw=true)
 - Visualisasi genre menunjukkan **International Movies**, **Dramas**, dan **Comedies** sebagai kategori teratas.
 
