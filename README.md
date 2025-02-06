@@ -130,13 +130,16 @@ Evaluasi dilakukan dengan menggunakan dua metrik utama:
 
 1. Precision@N untuk Content-Based Filtering
 2. Diversity@N untuk Collaborative Filtering
+   
 **a. CBF Evaluation - Precision@N**
 
 Precision digunakan untuk mengukur seberapa relevan rekomendasi yang diberikan oleh model CBF dibandingkan dengan konten yang sebenarnya relevan.
 
 Metode perhitungan Precision@N:
 
-Precision@N =(Jumlah rekomendasi yang relevan)/(N)
+$$ 
+Precision@N = \frac{Jumlah rekomendasi yang relevan}{N} 
+$$
 
 - ​Output:
 Precision@3 = 0.67
@@ -144,11 +147,14 @@ Precision@3 = 0.67
 Artinya, dari 3 rekomendasi yang diberikan, 67% di antaranya memiliki genre yang sesuai dengan film referensi.
 
 **b. CF Evaluation - Diversity@N**
+
 Diversity digunakan untuk mengukur seberapa beragam rekomendasi yang diberikan oleh model CF. Metrik ini mengidentifikasi jumlah kategori (genre, tema, atau atribut lain) yang berbeda dalam rekomendasi.
 
 Metode perhitungan Diversity@N:
 
-Diversity@N = (Jumlah kategori unik)/(𝑁)
+$$ 
+Diversity@N = \frac{Jumlah kategori unik}{N} 
+$$
 ​
 - Output:
 Diversity@3 = 2.00
