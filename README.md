@@ -126,6 +126,7 @@ Dengan menggunakan pendekatan ini, rekomendasi didasarkan pada pola interaksi pe
 2. Collaborative Filtering (CF):
 - Model CF memberikan rekomendasi yang personal dengan memanfaatkan data interaksi pengguna untuk menemukan pola yang relevan.
 
+**Kelebihan dan Kekurangan**
 - Content-Based Filtering:
   - Kelebihan: Dapat memberikan rekomendasi berdasarkan konten yang sudah diketahui, bahkan untuk pengguna baru.
   - Kekurangan: Tidak dapat memberikan rekomendasi yang sangat beragam karena hanya berdasarkan pada satu jenis data (misalnya, kategori produk).
